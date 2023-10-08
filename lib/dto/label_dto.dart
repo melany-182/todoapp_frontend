@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 class LabelDto {
-  final Long labelId;
+  final int labelId;
   final String labelName;
-  final Long userId;
+  final int userId;
 
   LabelDto({
     required this.labelId,

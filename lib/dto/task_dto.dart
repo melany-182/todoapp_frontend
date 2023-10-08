@@ -1,22 +1,20 @@
-import 'dart:ffi';
-
 class TaskDto {
-  final Long taskId;
+  final int taskId;
   final String title;
   final String description;
-  final DateTime dueDate;
-  final DateTime completedDate;
+  final DateTime? dueDate;
+  final DateTime? completedDate;
   final String status;
   final bool archived;
-  final Long labelId;
-  final Long userId;
+  final int labelId;
+  final int userId;
 
   TaskDto({
     required this.taskId,
     required this.title,
     required this.description,
-    required this.dueDate,
-    required this.completedDate,
+    this.dueDate,
+    this.completedDate,
     required this.status,
     required this.archived,
     required this.labelId,
@@ -28,8 +26,12 @@ class TaskDto {
       taskId: json['taskId'],
       title: json['title'],
       description: json['description'],
-      dueDate: json['dueDate'],
-      completedDate: json['completedDate'],
+      dueDate: json['dueDate'] != null
+          ? DateTime.parse(json['dueDate'] as String)
+          : null,
+      completedDate: json['completedDate'] != null
+          ? DateTime.parse(json['completedDate'] as String)
+          : null,
       status: json['status'],
       archived: json['archived'],
       labelId: json['labelId'],

@@ -23,18 +23,18 @@ class LoginService {
     };
     var response = await http.post(uri,
         headers: headers, body: body); // invocación al backend
-    debugPrint('Respuesta del backend: ${response.body}');
+    // debugPrint('Respuesta del backend: ${response.body}');
     if (response.statusCode == 200) {
       debugPrint(
           'Respuesta 200 del backend (exitoso).'); // 200 significa que el backend procesó la solicitud correctamente
       var responseDto = ResponseDto.fromJson(jsonDecode(response
           .body)); // aquí ya no existe statusCode, dado que ya se decodificó
-      debugPrint("AQUÍ: ${responseDto.code.toString()}");
+      // debugPrint("AQUÍ: ${responseDto.code.toString()}");
       if (responseDto.code.toString() == 'TODO-0000') {
         // si el backend autenticó al usuario
         result = LoginResponseDto.fromJson(
             responseDto.response); // ESTO es lo que se retorna al cubit
-        debugPrint('resultado: ${result.toJson()}');
+        debugPrint('resultado de autenticación correcta: ${result.toJson()}');
       } else {
         throw Exception(responseDto.errorMessage);
       }

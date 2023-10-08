@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoapp_frontend/bloc/label_cubit.dart';
 import 'package:todoapp_frontend/bloc/login_cubit.dart';
+import 'package:todoapp_frontend/bloc/task_cubit.dart';
+import 'package:todoapp_frontend/ui/add_task_page.dart';
 import 'package:todoapp_frontend/ui/login_page.dart';
 import 'package:todoapp_frontend/ui/menu_page.dart';
 
@@ -17,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(create: (context) => LoginCubit()),
+        BlocProvider<TaskCubit>(create: (context) => TaskCubit()),
+        BlocProvider<LabelCubit>(create: (context) => LabelCubit()),
       ],
       child: MaterialApp(
         title: 'Todo App',
@@ -27,6 +32,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginPage(),
           '/menu': (context) => const MenuPage(),
+          '/addTask': (context) => const AddTaskPage(),
         },
         debugShowCheckedModeBanner: false,
       ),
