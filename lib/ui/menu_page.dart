@@ -54,6 +54,22 @@ class MenuPage extends StatelessWidget {
                   } else {
                     stateStringColor = Colors.green;
                   }
+                  String dueDateString = state.data[index].dueDate.toString();
+                  String dueDateString1 = dueDateString.substring(0, 10);
+                  String dueDateString2 = dueDateString.substring(11, 19);
+                  dueDateString = '$dueDateString1 • $dueDateString2';
+                  String completedDateString = '';
+                  String completedDateString1 = '';
+                  String completedDateString2 = '';
+                  if (state.data[index].completedDate != null) {
+                    completedDateString =
+                        state.data[index].completedDate.toString();
+                    completedDateString1 = completedDateString.substring(0, 10);
+                    completedDateString2 =
+                        completedDateString.substring(11, 19);
+                    completedDateString =
+                        ' $completedDateString1 • $completedDateString2';
+                  }
                   return Card(
                     child: ListTile(
                       title: Column(
@@ -70,11 +86,23 @@ class MenuPage extends StatelessWidget {
                                   color: stateStringColor,
                                 ),
                               ),
+                              Text(
+                                completedDateString,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
                             ],
                           ),
                           Text(
-                            state.data[index].description,
+                            state.data[index].title,
                             style: const TextStyle(fontSize: 17.5),
+                          ),
+                          const SizedBox(height: 7.5),
+                          Text(
+                            state.data[index].description,
+                            style: const TextStyle(fontSize: 15),
                           ),
                         ],
                       ),
@@ -82,7 +110,7 @@ class MenuPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            state.data[index].dueDate.toString(),
+                            dueDateString,
                             style: const TextStyle(fontSize: 15),
                           ),
                           BlocBuilder<LabelCubit, LabelState>(

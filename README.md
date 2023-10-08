@@ -1,16 +1,33 @@
-# todoapp_frontend
+# Frontend para aplicación de TODO List 📆✅
 
-A new Flutter project.
+## Descripción
 
-## Getting Started
+Este proyecto corresponde al frontend para una aplicación de TODO List. La aplicación consta de múltiples funcionalidades que permiten al usuario gestionar tareas creadas por él mismo.
 
-This project is a starting point for a Flutter application.
+## Funcionalidad
 
-A few resources to get you started if this is your first Flutter project:
+**1. Creación de tareas:** La aplicación permite al usuario crear nuevas tareas pendientes por defecto y asignarles una fecha límite y una etiqueta, para identificar el tipo de tarea.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**2. Listado de tareas:** La aplicación permite al usuario listar todas las tareas pendientes y completadas, con las especificaciones sobre sus fechas límite, etiquetas y estados.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**3. Conclusión de tareas:** La aplicación permite al usuario marcar tareas como completadas y registrar la fecha de conclusión de las mismas.
+
+**4. Seguridad:** La aplicación permite al usuario realizar un proceso de autenticación para poder acceder a las funcionalidades de la aplicación.
+
+**5. Gestión de etiquetas:** La aplicación permite al usuario crear nuevas etiquetas, modificarlas y eliminarlas.
+
+## Requerimientos
+
+Para compilar y ejecutar este proyecto, es necesario tener instalado:
+
+ - Flutter SDK 3.13.6
+
+## Compilación y ejecución de la aplicación
+
+Para compilar y ejecutar la aplicación, ejecutar el siguiente comando:
+
+```
+flutter run
+```
+
+Posteriormente, elegir el dispositivo en el que se desea ejecutar la aplicación.

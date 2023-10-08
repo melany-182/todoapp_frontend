@@ -35,6 +35,8 @@ class LabelService {
       throw Exception(
           "Error desconocido al intentar obtener los datos de las etiquetas.");
     }
+    result.sort((a, b) => a.labelId!.compareTo(b
+        .labelId!)); // para siempre retornar la lista de etiquetas ordenada por labelId
     return result;
   }
 

@@ -13,7 +13,8 @@ import 'package:todoapp_frontend/ui/manage_labels_page.dart';
 class AddTaskPage extends StatelessWidget {
   AddTaskPage({Key? key}) : super(key: key);
 
-  final taskNameInput = TextEditingController();
+  final titleInput = TextEditingController();
+  final descriptionInput = TextEditingController();
   final dueDateInput = TextEditingController();
 
   @override
@@ -33,6 +34,12 @@ class AddTaskPage extends StatelessWidget {
                     Text('Error al guardar la tarea: ${state.errorMessage}'),
               ),
             );
+          } else if (state.status == PageStatus.success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Tarea guardada correctamente'),
+              ),
+            );
           }
         },
         builder: (context, state) {
@@ -42,11 +49,20 @@ class AddTaskPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
-                  controller: taskNameInput,
+                  controller: titleInput,
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.border_color_outlined),
+                    border: OutlineInputBorder(),
+                    labelText: 'Título de la tarea',
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: descriptionInput,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.assignment),
                     border: OutlineInputBorder(),
-                    labelText: 'Nombre de la tarea',
+                    labelText: 'Descripción de la tarea',
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -154,8 +170,7 @@ class AddTaskPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const ManageLabelsPage()));
+                                builder: (context) => ManageLabelsPage()));
                       },
                     ),
                   ],
@@ -187,7 +202,7 @@ class AddTaskPage extends StatelessWidget {
                         onPressed: state.status == PageStatus.loading
                             ? null
                             : () {
-                                if (taskNameInput.text != "" &&
+                                if (titleInput.text != "" &&
                                     dueDateInput.text != "" &&
                                     BlocProvider.of<LabelCubit>(context)
                                             .state
@@ -195,8 +210,8 @@ class AddTaskPage extends StatelessWidget {
                                         null) {
                                   // si el nombre de la tarea, la fecha de cumplimiento y la etiqueta no están vacíos
                                   TaskDto newTask = TaskDto(
-                                    title: 'a', // FIXME: obtener del ui
-                                    description: taskNameInput.text,
+                                    title: titleInput.text,
+                                    description: descriptionInput.text,
                                     dueDate: DateFormat("yyyy-MM-dd'T'HH:mm:ss")
                                         .format(DateFormat('dd-MM-yyyy')
                                             .parse(dueDateInput.text)),

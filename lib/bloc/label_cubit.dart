@@ -93,7 +93,7 @@ class LabelCubit extends Cubit<LabelState> {
   // métodos para settear el valor seleccionado en el dropdown button
 
   void selectLabel(String selectedLabel) {
-    int selectedLabelId = identifyLabelByName(selectedLabel).labelId;
+    int selectedLabelId = identifyLabelByName(selectedLabel).labelId!;
     debugPrint("id: $selectedLabelId");
     emit(state.copyWith(
       selectedLabel: selectedLabel,
