@@ -30,4 +30,4 @@ Para compilar y ejecutar la aplicación, ejecutar el siguiente comando:
 flutter run
 ```
 
-Posteriormente, elegir el dispositivo en el que se desea ejecutar la aplicación.
+Posteriormente, elegir el dispositivo en el que se desee ejecutar la aplicación.

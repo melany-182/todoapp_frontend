@@ -203,12 +203,13 @@ class AddTaskPage extends StatelessWidget {
                             ? null
                             : () {
                                 if (titleInput.text != "" &&
+                                    descriptionInput.text != "" &&
                                     dueDateInput.text != "" &&
                                     BlocProvider.of<LabelCubit>(context)
                                             .state
                                             .selectedLabel !=
                                         null) {
-                                  // si el nombre de la tarea, la fecha de cumplimiento y la etiqueta no están vacíos
+                                  // si el título de la tarea, la descripción, la fecha de cumplimiento y la etiqueta no están vacíos
                                   TaskDto newTask = TaskDto(
                                     title: titleInput.text,
                                     description: descriptionInput.text,
@@ -234,7 +235,7 @@ class AddTaskPage extends StatelessWidget {
                                       return AlertDialog(
                                         title: const Text("Error."),
                                         content: const Text(
-                                            'No se puede guardar la tarea porque no se especificó la descripción, la fecha de cumplimiento o la etiqueta de la misma.',
+                                            'No se puede guardar la tarea porque no se especificó el título, la descripción, la fecha de cumplimiento o la etiqueta de la misma.',
                                             style: TextStyle(fontSize: 15),
                                             textAlign: TextAlign.justify),
                                         actions: [
