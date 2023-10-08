@@ -5,7 +5,6 @@ import 'package:todoapp_frontend/bloc/label_state.dart';
 import 'package:todoapp_frontend/bloc/login_state.dart';
 import 'package:todoapp_frontend/bloc/task_cubit.dart';
 import 'package:todoapp_frontend/bloc/task_state.dart';
-import 'package:todoapp_frontend/dto/task_dto.dart';
 import 'package:todoapp_frontend/ui/add_task_page.dart';
 
 class MenuPage extends StatelessWidget {
@@ -65,7 +64,7 @@ class MenuPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                state.data[index].status,
+                                state.data[index].status!,
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: stateStringColor,
@@ -109,29 +108,11 @@ class MenuPage extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  String newState = '';
-                                  if (state.data[index].status == 'Pendiente') {
-                                    newState = 'Completada';
-                                  } else {
-                                    newState = 'Pendiente';
-                                  }
-                                  TaskDto newTask = TaskDto(
-                                    taskId: state.data[index].taskId,
-                                    title: state.data[index].title,
-                                    description: state.data[index].description,
-                                    dueDate: state.data[index].dueDate,
-                                    completedDate:
-                                        state.data[index].completedDate,
-                                    status: newState,
-                                    archived: state.data[index].archived,
-                                    labelId: state.data[index].labelId,
-                                    userId: state.data[index].userId,
-                                  );
                                   // se llama al cubit para que ejecute el cambio de estado de la tarea
                                   context
                                       .read<TaskCubit>()
                                       .updateTaskStatusById(
-                                          state.data[index].taskId, newTask);
+                                          state.data[index].taskId!);
                                 },
                                 child: Text(
                                   changeStateString,

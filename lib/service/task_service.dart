@@ -34,6 +34,8 @@ class TaskService {
       throw Exception(
           "Error desconocido al intentar obtener los datos de las tareas.");
     }
+    result.sort((a, b) => a.taskId!.compareTo(b
+        .taskId!)); // para siempre retornar la lista de tareas ordenada por taskId
     return result;
   }
 
@@ -63,16 +65,15 @@ class TaskService {
   }
 
   static Future<ResponseDto> updateTaskStatusById(
-      int taskId, TaskDto newTask, String token) async {
+      int taskId, String token) async {
     ResponseDto result;
     var uri = Uri.parse("$backendUrlBase/api/v1/tasks/${taskId.toString()}");
-    var body = json.encode(newTask.toJson());
     Map<String, String> headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    var response = await http.put(uri, headers: headers, body: body);
+    var response = await http.put(uri, headers: headers);
     if (response.statusCode == 200) {
       var responseDto = ResponseDto.fromJson(jsonDecode(response.body));
       debugPrint(

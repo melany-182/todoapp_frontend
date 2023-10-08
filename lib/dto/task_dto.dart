@@ -1,39 +1,35 @@
 class TaskDto {
-  final int taskId;
+  final int? taskId;
   final String title;
   final String description;
-  final DateTime? dueDate;
-  final DateTime? completedDate;
-  final String status;
-  final bool archived;
+  final String? dueDate;
+  final String? completedDate;
+  final String? status;
+  final bool? archived;
   final int labelId;
   final int userId;
 
   TaskDto({
-    required this.taskId,
+    this.taskId,
     required this.title,
     required this.description,
     this.dueDate,
     this.completedDate,
-    required this.status,
-    required this.archived,
+    this.status,
+    this.archived,
     required this.labelId,
     required this.userId,
   });
 
   factory TaskDto.fromJson(Map<String, dynamic> json) {
     return TaskDto(
-      taskId: json['taskId'],
+      taskId: json['taskId'] as int?,
       title: json['title'],
       description: json['description'],
-      dueDate: json['dueDate'] != null
-          ? DateTime.parse(json['dueDate'] as String)
-          : null,
-      completedDate: json['completedDate'] != null
-          ? DateTime.parse(json['completedDate'] as String)
-          : null,
-      status: json['status'],
-      archived: json['archived'],
+      dueDate: json['dueDate'] as String?,
+      completedDate: json['completedDate'] as String?,
+      status: json['status'] as String?,
+      archived: json['archived'] as bool?,
       labelId: json['labelId'],
       userId: json['userId'],
     );

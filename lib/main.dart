@@ -5,6 +5,7 @@ import 'package:todoapp_frontend/bloc/login_cubit.dart';
 import 'package:todoapp_frontend/bloc/task_cubit.dart';
 import 'package:todoapp_frontend/ui/add_task_page.dart';
 import 'package:todoapp_frontend/ui/login_page.dart';
+import 'package:todoapp_frontend/ui/manage_labels_page.dart';
 import 'package:todoapp_frontend/ui/menu_page.dart';
 
 void main() {
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginPage(),
           '/menu': (context) => const MenuPage(),
-          '/addTask': (context) => const AddTaskPage(),
+          '/addTask': (context) => AddTaskPage(),
+          '/manageLabels': (context) => const ManageLabelsPage(),
         },
         debugShowCheckedModeBanner: false,
       ),

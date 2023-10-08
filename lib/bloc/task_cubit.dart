@@ -48,13 +48,13 @@ class TaskCubit extends Cubit<TaskState> {
     }
   }
 
-  Future<void> updateTaskStatusById(int taskId, TaskDto newTask) async {
+  Future<void> updateTaskStatusById(int taskId) async {
     emit(state.copyWith(status: PageStatus.loading));
     const storage = FlutterSecureStorage();
     String? token = await storage.read(key: "AuthToken");
     try {
       ResponseDto response =
-          await TaskService.updateTaskStatusById(taskId, newTask, token!);
+          await TaskService.updateTaskStatusById(taskId, token!);
       debugPrint("response (aquí, update task cubit): ${response.toJson()}");
       emit(state.copyWith(
         status: PageStatus.success,
